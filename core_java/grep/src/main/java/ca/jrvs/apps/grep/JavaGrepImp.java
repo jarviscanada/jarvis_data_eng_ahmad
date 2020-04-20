@@ -91,22 +91,6 @@ public class JavaGrepImp implements JavaGrep{
             return line.matches(getRegex());
 }
 
-        public List<File> listFilesLambda(String rootDir) {
-        File file = new File(rootDir);
-        File[] list_files = file.listFiles();
-        List<File> actual_files = new ArrayList<File>();
-        if (list_files == null) {
-            return actual_files;
-        } else {
-            Stream<File> stream_list_files_1 = Stream.of(list_files);
-            Stream<File> stream_list_files_2 = Stream.of(list_files);
-            actual_files.addAll(stream_list_files_1.filter(i -> i.isFile()).collect(Collectors.toList()));
-            stream_list_files_2.filter(i->i.isDirectory()).forEach(i->actual_files.addAll(listFilesLambda(i.toString())));
-        }
-
-return actual_files;
-
-    }
 
     public List<String> readLinesLambda(File inputFile) throws IOException{
         BufferedReader br = new BufferedReader(new FileReader(inputFile));
@@ -158,24 +142,6 @@ return actual_files;
         System.out.println("done...");
 
 
-        //final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
-
-            //System.out.println(listFilesLambda("/home/anhassan/Documents"));
-/*
-            File f = new File("/home/anhassan/Documents/wikki_cric.txt");
-            List<String> output = new ArrayList<>();
-        try {
-            output = readLinesLambda(f);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int counter =0;
-        for (String str :output){
-            counter++;
-            System.out.println(counter+". "+str);
-        }
-        writeToFile(output);
-*/
     }
 
 }
