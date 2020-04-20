@@ -92,11 +92,6 @@ public class JavaGrepImp implements JavaGrep{
 }
 
 
-    public List<String> readLinesLambda(File inputFile) throws IOException{
-        BufferedReader br = new BufferedReader(new FileReader(inputFile));
-        return br.lines().flatMap(i->Stream.of(i.split("\\."))).filter(i->i.toString().length()!=0).map(i->i.toString()+".").collect(Collectors.toList());
-    }
-
     public void writeToFile(List<String> lines) throws IOException {
         FileWriter fw=new FileWriter(getOutFile());
         for (String str : lines){
